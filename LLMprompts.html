@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-16">
+  <title>LLM prompts – Sanremo Music Festival</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="top-bar">
+    <a href="index.html" class="logo-link">
+        <img src="images/uniboicona.png" alt="Logo" class="logo">
+    </a>
+
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research Question</a>
+        <a href="methodology.html">Methodology</a>
+        <a href="queries.html">SPARQL Queries</a>
+        <a href="LLMprompts.html">LLMprompts</a>
+        <a href="RDFtriples.html">RDF Triples</a>
+        <a href="sparqlconstruct.html">Sparql Construct</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="team.html">Team</a>
+    </nav>
+</header>
+
+
+<div class="container">
+
+<section>
+
+<h1>PROMPT ENGINEERING FOR LARGE LANGUAGE MODELS (LLMS)</h1>
+
+<p>We used 3 prompting techniques to extract information from ChatGPT (version 5.6 Luna), Gemini (version 3.5 Flash-Lite) and Mistral (version medium 3.5). In order to obtain results that were as neutral and unbiased as possible, we logged out of our personal accounts before interacting with the <a href="https://en.wikipedia.org/wiki/Artificial_intelligence">AI</a> tools. This allowed us to generate responses without the LLMs drawing on any previously stored information, <a href="https://en.wikipedia.org/wiki/Online_chat">chat</a> histories, and personalised settings (including the language in which the systems responds), since we normally formulate prompts in our native <a href="https://en.wikipedia.org/wiki/Language">language</a>, which is not <a href="https://en.wikipedia.org/wiki/English_language">English</a> but the course and final presentation were to be conducted in English).</p>
+
+<p>Knowing that AI-powered conversational assistants tend to refer directly to the wording and structure of the input when providing results, we opted to query all three assistants using identical prompts. This ensured that the outputs could be compared under consistent conditions.</p>
+
+<p>We then compared the information available on <a href="https://www.wikipedia.org">Wikipedia</a> with our prior knowledge of the festival, acquired by following this cultural event on television. This process allowed us to assess the accuracy and reliability of the information before inserting it into the knowledge graph.</p>
+
+<h2>Zero-shot Prompting</h2>
+<p><em>Prompt: "What can you tell me about the Sanremo Music Festival?"</em></p>
+
+<p>According to this technique, we prompted the AI <a href="https://en.wikipedia.org/wiki/Chatbot">chatbots</a> with a broad question without providing examples or additional task-specific instructions, in order to obtain general information about the Sanremo Music Festival. This approach evaluates the LLM's inherent ability to produce useful responses based solely on the information encoded in their underlying models, without relying on prior context or additional guidance.</p>
+
+<h3>Results</h3>
+<dl class="llm-results">
+  <div class="llm-entry">
+    <dt><strong>ChatGPT</strong></dt>
+    <dd>This platform provided a substantial amount of information and added unprompted knowledge, including the event schedule throughout Sanremo Week and a list of some of the most remarkable winners from previous editions. Furthermore, ChatGPT spontaneously clarified that the Sanremo Music Festival is distinct from the <a href="https://en.wikipedia.org/wiki/Eurovision_Song_Contest">Eurovision Song Contest</a>.</dd>
+    <img src="images/ChatGPT_Q1.png" alt="Screenshot ChatGPT_Q1" width="1000px">
+    <img src="images/ChatGPT_Q1.2.png" alt="Screenshot ChatGPT_Q1.2" width="1000px">
+    <img src="images/ChatGPT_Q1.3.png" alt="Screenshot ChatGPT_Q1.3" width="1000px">
+  </div>
+
+  <div class="llm-entry">
+    <dt><strong>Gemini</strong></dt>
+    <dd>The generative AI system answered correctly without giving an excessively long response.</dd>
+    <img src="images/Gemini_question1.png" alt="Screenshot Gemini" width="1000px">
+  </div>
+
+  <div class="llm-entry">
+    <dt><strong>Mistral</strong></dt>
+    <dd>This AI-based conversational assistant provided a brief, essential answer to the prompt.</dd>
+    <img src="images/Mistral_question1.png" alt="Screenshot Mistral" width="1000px">
+  </div>
+</dl>
+
+<h3>Considerations</h3>
+<p>After carefully examining all the responses, we concluded that, considering our main aim to create RDF triples from the information provided, Gemini provided the most suitable results, despite ChatGPT's responses containing a greater amount of data.</p>
+
+
+<h2>Zero shot Chain of Thoughts prompting</h2>
+<p><em>Prompt: "Tell me about the 2026 edition of the Sanremo Music Festival. Guide me through the contestants, the names of the brand new songs they competed with and the host"</em></p>
+
+<p>This prompting strategy allows us to obtain detailed information while restricting the results to specific categories explicitly defined in the textual prompt. It is a particularly useful resource when a task requires multi-step reasoning rather than simple information recall or straightforward generation, as the user inserts explicit intermediate reasoning steps within the input, which can help structure the process of reaching a solution.</p>
+
+<p>For our project, this strategy proved very effective for building a database and creating RDF triples.</p>
+
+<h3>Results</h3>
+<dl class="llm-results">
+  <div class="llm-entry">
+    <dt><strong>ChatGPT</strong></dt>
+    <dd>ChatGPT provided a detailed response, but several inaccuracies were identified. First, it stated that <a href="https://en.wikipedia.org/wiki/Laura_Pausini">Laura Pausini</a> co-hosted only the first night of the festival, whereas she actually hosted all five evenings. Second, it reported that <a href="https://en.wikipedia.org/wiki/Chiello">Chiello</a> performed a duet with <a href="https://en.wikipedia.org/wiki/Morgan_(singer)">Morgan</a> during the Cover Night; although Morgan was initially scheduled to perform with him, artistic disagreements led to his replacement by pianist Saverio Cigarini. Finally, the response omitted <a href="https://en.wikipedia.org/wiki/Gianni_Morandi">Gianni Morandi</a>'s unscheduled participation in a duet with his son, professionally known as <a href="https://en.wikipedia.org/wiki/Tredici_Pietro">Tredici Pietro</a>. The AI chatbot introduced relevant figures from the Italian music scene who may be unfamiliar to an international audience, included the top 5 contestants of the 2026 edition instead of only mentioning the winner. It also provided an overview of the musical genres represented by the songs performed, highlighting the musical diversity of the 2026 edition. Moreover, it examined the Cover Night in great detail, mentioning the pairing as well as the songs performed and presenting a list of the contestants in alphabetical order. In contrast, the participants in Sanremo Giovani were not organised alphabetically.</dd>
+    <img src="images/ChatGPT_Q2.png" alt="Screenshot ChatGPT_Q2" width="1000px">
+    <img src="images/ChatGPT_Q2.2.png" alt="Screenshot ChatGPT_Q2.2" width="1000px">
+    <img src="images/ChatGPT_Q2.3.png" alt="Screenshot ChatGPT_Q2.3" width="1000px">
+    <img src="images/ChatGPT_Q2.4.png" alt="Screenshot ChatGPT_Q2.4" width="1000px">
+  </div>
+
+  <div class="llm-entry">
+    <dt><strong>Gemini</strong></dt>
+    <dd>Gemini presented the list of participants in alphabetical order, whereas the Sanremo Giovani contestants were organised according to their final ranking. Overall, the results addressed the aspects required in the prompt and did not contain inaccuracies.</dd>
+    <img src="images/Gemini_question2_1.png" alt="Screenshot Gemini_question2_1" width="1000px">
+    <img src="images/Gemini_question2_2.png" alt="Screenshot Gemini_question2_2" width="1000px">
+  </div>
+
+  <div class="llm-entry">
+    <dt><strong>Mistral</strong></dt>
+    <dd>It mentions only 3 songs: the winning song, the song performed by the winner of Sanremo Giovani, and <a href="https://en.wikipedia.org/wiki/Levante_(singer)">Levante</a>'s song, even though she placed 14th in the final ranking. Mistral correctly identified the co-hosts of all 5 festival evenings but omitted the list of contestants and competing songs, despite it being requested in the prompt. Instead, it directed the user to an external <a href="https://en.wikipedia.org/wiki/Sources_(website)">source</a>. The responses provided are ultimately incomplete and unable to fully satisfy the question.</dd>
+    <img src="images/Mistral_question2_1.png" alt="Screenshot Mistral_question2_1" width="1000px">
+    <img src="images/Mistral question2_2.png" alt="Screenshot Mistral_question2_2" width="1000px">
+  </div>
+</dl>
+
+<h3>Considerations</h3>
+<p>We analysed the 3 outputs generated by the different LLMs and agreed that Gemini provided the most suitable response, as it combined accuracy, completeness, and adherence to the prompt. Although ChatGPT provided more detailed information, it contained several inaccuracies, while Mistral's response was incomplete. Therefore, Gemini's output was considered the most reliable basis for creating RDF triples.</p>
+
+
+<h2>Few-shot Prompting</h2>
+<p><em>Prompt: "Every edition of the Sanremo Music Festival has a winner. The winner of the <a href="https://en.wikipedia.org/wiki/Sanremo_Music_Festival_2024">2024 edition</a> was <a href="https://en.wikipedia.org/wiki/Angelina_Mango">Angelina Mango</a> with the song '<a href="https://en.wikipedia.org/wiki/La_noia_(song)">La noia</a>', the winner of the <a href="https://en.wikipedia.org/wiki/Sanremo_Music_Festival_2025"> 2025 edition</a> was <a href="https://en.wikipedia.org/wiki/Olly_(singer)">Olly</a> with '<a href="https://en.wikipedia.org/wiki/Balorda_nostalgia">Balorda Nostalgia</a>'. Who won the 2026 edition and with which song?"</em></p>
+
+<p>In this case, we prompted the LLMs by providing examples, following the few-shot prompting approach. This prompt engineering technique is particularly useful when you want an LLM to perform a task by giving it a small number of examples that demonstrate the desired <a href="https://en.wikipedia.org/wiki/Input/output">input–output</a> pattern. It generally offers more satisfactory results when zero-shot prompting performs poorly because a few carefully chosen examples can help the model understand the task better.</p>
+
+<h3>Results</h3>
+<dl class="llm-results">
+  <div class="llm-entry">
+    <dt><strong>ChatGPT</strong></dt>
+    <dd>It answers the prompt in a precise and concise way, adapting the output to the pattern established in the prompt. It also included unsolicited knowledge, such as the date of the final competition (28th of February) and the top 3 positions in the final ranking.</dd>
+    <img src="images/ChatGPT_Q3.png" alt="Screenshot ChatGPT_Q3" width="1000px">
+  </div>
+
+  <div class="llm-entry">
+    <dt><strong>Gemini</strong></dt>
+    <dd>It provided a brief response to the query by identifying the winner and the name of the winning song. It further specified that the 2026 edition was the 76th edition.</dd>
+    <img src="images/Gemini_question3.png" alt="Screenshot Gemini_question3" width="1000px">
+  </div>
+
+  <div class="llm-entry">
+    <dt><strong>Mistral</strong></dt>
+    <dd>This AI-powered conversational assistant only indicated the name of the winning singer of Sanremo 2026 and the corresponding song.</dd>
+    <img src="images/Mistral question3.png" alt="Screenshot Mistral 3" width="1000px">
+  </div>
+</dl>
+
+<h3>Considerations</h3>
+<p>We considered ChatGPT to have provided the best result, as the structure of its output closely adhered to the format explicitly established in the prompt example.</p>
+
+
+<h2>Conclusions</h2>
+<p>After analysing and comparing the outputs generated by the three LLMs, we identified Gemini as the most effective overall. In spite of that, in 1 case out of 3 we preferred the results yielded by ChatGPT, which nevertheless generally tends to digress and return very long, unsolicited and occasionally erroneous results (or omits relevant details). Mistral produced the least satisfactory answers across our questions.</p>
+
+</section>
+
+</div>
+
+<footer>
+    <div class="footer-content">
+        <h3>Festival di Sanremo</h3>
+        <p>Project for Knowledge Engineering and Computation for the Humanities Course.</p>
+        <p><strong>Contacts:</strong> <a href="mailto:info@tuamail.it">michelle.vallet@studio.unibo.it</a> | <a href="mailto:info@tuamail.it">saramaryam.flamigni@studio.unibo.it</a> | <a href="mailto:info@tuamail.it">marta.megna@studio.unibo.it</a> | <a href="mailto:info@tuamail.it">giuseppe.campese@studio.unibo.it</a> | <a href="mailto:info@tuamail.it">alice.celio@studio.unibo.it</a> | </p>
+        <p>&copy; 2026 KE4H Project - University of Bologna</p>
+    </div>
+</footer>
+
+
+<script>
+    const sideMenu = document.getElementById("sideMenu");
+    const openBtn = document.getElementById("openMenuBtn");
+    const closeBtn = document.getElementById("closeMenuBtn");
+
+
+    openBtn.addEventListener("click", (e) => {
+        sideMenu.style.left = "0";
+        e.stopPropagation();
+    });
+
+
+    closeBtn.addEventListener("click", () => {
+        sideMenu.style.left = "-250px";
+    });
+
+
+    document.addEventListener("click", (e) => {
+        if (!sideMenu.contains(e.target) && sideMenu.style.left === "0px") {
+            sideMenu.style.left = "-250px";
+        }
+    });
+</script>
+
+
+</body>
+</html>

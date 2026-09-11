@@ -1,0 +1,159 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix arco: <https://w3id.org/arco/ontology/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix wd: <https://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix Sanremo: <https://www.wikidata.org/entity/Q206959> .
+@prefix SR76: <https://www.wikidata.org/entity/Q135156610> .
+@prefix tiapit: <https://w3id.org/italia/onto/TI/> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+
+Sanremo: a cis:CulturalEvent, arco:IntangibleCulturalProperty ;
+    rdfs:label "Festival di Sanremo"@it ;
+    rdfs:label "Festival della Canzone Italiana"@it ;
+    rdfs:label "Sanremo Music Festival"@en .
+Sanremo: a a-ce:RecurrentSituationSeries ;
+    a-ce:hasRecurrence [
+        a a-ce:Recurrence ;
+        ti:hasDuration [
+            a ti:Duration ;
+            ti:durationValue "1"^^xsd:integer ;
+            ti:durationUnit "year"
+        ]
+    ] .
+Sanremo: arco:hasLocation wd:Q1871404 .
+wd:Q1871404 rdfs:label "Teatro Ariston" .
+Sanremo: a a-ce:Competition; 
+    a-ce:hasAward wd:Q84321390 .
+wd:Q84321390 rdfs:label "Leone d'oro" ;
+    rdfs:label "Trofeo del Festival di Sanremo" .
+    
+SR76: a-ce:isSituationMemberOf Sanremo: ;
+    a-ce:editionNumber "76"^^xsd:integer ;
+    a tiapit:TimeInterval ;
+    tiapit:startTime "2026-02-24T00:00:00"^^xsd:dateTime ;
+    tiapit:endTime "2026-03-01T03:00:00"^^xsd:dateTime .
+SR76: wdt:P371 wd:Q933508, wd:Q170697 .
+wdt:P371 rdfs:label "is hosted by", "has TV presenter" .
+wd:Q933508 l0:name "Carlo Conti" .
+wd:Q170697 l0:name "Laura Pausini" ;
+    a wd:Q177220. 
+SR76: rdfs:label "Festival di Sanremo 2026"@it;
+    rdfs:label "76° Festival della Canzone Italiana"@it ;
+    rdfs:label "Sanremo Music Festival 2026"@en ;
+    a owl:Restriction ;
+    owl:onProperty wdt:P710 ;
+    owl:allValuesFrom [ 
+        a owl:Class ;
+        owl:oneOf (wd:Q445698, wd:Q3633645, wd:Q117312923, wd:Q1111535, wd:Q109936158, wd:Q137206605, wd:Q23907342, wd:Q41458912, wd:Q19365890, wd:Q3741984, wd:Q539713, wd:Q1229104, wd:Q83667921, wd:Q1749089, wd:Q114336605, wd:Q108513861, wd:Q84571838, wd:Q19310473, wd:Q26972358, wd:Q3843927, wd:Q79980599, wd:Q15695806, wd:Q104599784, wd:Q15303721, wd:Q52418873, wd:Q466422, wd:Q733379, wd:Q2283974, wd:Q99535402, wd:Q135012964, wd:Q125080611, wd:Q30554515, wd:Q109924061) ] .
+wdt:P710 rdfs:label "Participant" .
+
+wdt:P175 rdfs:domain wd:Q2188189 ;
+    rdfs:range wd:Q177220 ;
+    rdfs:label "Is performed by" .
+wd:Q2188189 rdfs:label "Musical work" .
+wd:Q177220 rdfs:subClassOf cpv:Person ;
+    rdfs:label "Singer" .
+    
+wd:Q138464323 wdt:P175 wd:Q445698 ;
+    rdfs:label "Magica Favola" .
+wd:Q445698 l0:name "Arisa" .
+wd:Q138496957 wdt:P175 wd:Q3633645 ;
+    rdfs:label "Resta con me" .
+wd:Q3633645 l0:name "Bambole di Pezza" .
+wd:Q138465550 wdt:P175 wd:Q117312923 ;
+    rdfs:label "Ti penso sempre" .
+wd:Q117312923 l0:name "Chiello" .
+wd:Q138464314 wdt:P175 wd:Q1111535 ;
+    rdfs:label "Ai ai" .
+wd:Q1111535 l0:name "Dargen D'Amico" .
+wd:Q138460502 wdt:P175 wd:Q109936158 ;
+    rdfs:label "Che fastidio!" .
+wd:Q109936158 l0:name "Ditonellapiaga" .
+wd:Q138465583 wdt:P175 wd:Q137206605 ;
+    rdfs:label "Avvoltoi" .
+wd:Q137206605 l0:name "Eddie Brock" .
+wd:Q138463862 wdt:P175 wd:Q23907342 ;
+    rdfs:label "Voilà" .
+wd:Q23907342 l0:name "Elettra Lamborghini" .
+wd:Q138546440 wdt:P175 wd:Q41458912 ;
+    rdfs:label "Ogni volta che non so volare" .
+wd:Q41458912 l0:name "Enrico Nigiotti" .
+wd:Q138469820 wdt:P175 wd:Q19365890 ;
+    rdfs:label "Stella Stellina" .
+wd:Q19365890 l0:name "Ermal Meta" .
+wd:Q137661431 wdt:P175 wd:Q3741984, wd:Q539713 ;
+    rdfs:label "Male Necessario" .
+wd:Q3741984 l0:name "Fedez" .
+wd:Q539713 l0:name "Marco Masini" .
+wd:Q138527273 wdt:P175 wd:Q1229104 ;
+    rdfs:label "Il meglio di me" .
+wd:Q1229104 l0:name "Francesco Renga" .
+wd:Q138463996 wdt:P175 wd:Q83667921 ;
+    rdfs:label "Stupida Sfortuna" .
+wd:Q83667921 l0:name "Fulminacci" .
+wd:Q138500238 wdt:P175 wd:Q1749089 ;
+    rdfs:label "Italia Starter Pack" .
+wd:Q1749089 l0:name "J-Ax" .
+wd:Q138498344 wdt:P175 wd:Q114336605, wd:Q108513861 ;
+    rdfs:label "Poesie clandestine" .
+wd:Q114336605 l0:name "LDA" .
+wd:Q108513861 l0:name "Aka 7even" .
+wd:Q138498272 wdt:P175 wd:Q84571838 ;
+    rdfs:label "Naturale" .
+wd:Q84571838 l0:name "Leo Gassmann" .
+wd:Q138464998 wdt:P175 wd:Q19310473 ;
+   rdfs:label "Sei tu" .
+wd:Q19310473 l0:name "Levante" .
+wd:Q138497182 wdt:P175 wd:Q26972358 ;
+   rdfs:label "Labirinto" .
+wd:Q26972358 l0:name "Luchè" .
+wd:Q138479076 wdt:P175 wd:Q3843927 ;
+   rdfs:label "Animali Notturni" .
+wd:Q3843927 l0:name "Malika Ayane" .
+wd:Q138464004 wdt:P175 wd:Q79980599 ;
+   rdfs:label "Le cose che non sai di me" .
+wd:Q79980599 l0:name "Mara Sattei" .
+wd:Q138466754 wdt:P175 wd:Q15695806 , wd:Q104599784 ;
+   rdfs:label "La felicità e basta" .
+wd:Q15695806  l0:name "Maria Antonietta" .
+wd:Q104599784 l0:name "Colombre" .
+wd:Q138464111 wdt:P175 wd:Q15303721 ;
+   rdfs:label "Prima o poi" .
+wd:Q15303721 l0:name "Michele Bravi" .
+wd:Q138503080 wdt:P175 wd:Q52418873 ;
+   rdfs:label "Prima che" .
+wd:Q52418873 l0:name "Nayt" .
+wd:Q138522484 wdt:P175 wd:Q466422 ;
+   rdfs:label "Opera" .
+wd:Q466422 l0:name "Patty Pravo" .
+wd:Q138496953 wdt:P175 wd:Q733379 ;
+   rdfs:label "Ora e per sempre" .
+wd:Q733379 l0:name "Raf" .
+wd:Q138466032 wdt:P175 wd:Q2283974 ;
+   rdfs:label "Per sempre sì" .
+wd:Q2283974 l0:name "Sal Da Vinci" .
+wd:Q138469874 wdt:P175 wd:Q99535402 ;
+   rdfs:label "Ossessione" .
+wd:Q99535402 l0:name "Samurai Jay" .
+wd:Q138462387 wdt:P175 wd:Q135012964 ;
+   rdfs:label "Tu mi piaci tanto" .
+wd:Q135012964 l0:name "Sayf" .
+wd:Q138464002 wdt:P175 wd:Q125080611 ;
+   rdfs:label "Qui con me" .
+wd:Q125080611 l0:name "Serena Brancale" .
+wd:Q138465313 wdt:P175 wd:Q30554515 ;
+   rdfs:label "I romantici" .
+wd:Q30554515 l0:name "Tommaso Paradiso" .
+wd:Q138495481 wdt:P175 wd:Q109924061 ;
+   rdfs:label "Uomo che cade" .
+wd:Q109924061 l0:name "Tredici Pietro" .
+
+SR76: wdt:P1346 wd:Q2283974 .
+wdt:P1346 rdfs:label "hasWinner" .                                                

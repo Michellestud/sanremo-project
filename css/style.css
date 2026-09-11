@@ -1,0 +1,369 @@
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #2b2b2b;
+    line-height: 1.6;
+    background-color: #fdfaf6;
+    
+    /* Keeps the footer anchored to the bottom of the screen */
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== TOP BAR / NAVBAR ===== */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #7a1f2b; /* Sanremo red */
+    padding: 10px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    width: 100%;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.logo {
+    height: 45px;
+    width: auto;
+    display: block;
+}
+
+.main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.main-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 6px 4px;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.main-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background-color: #f2c94c;
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: #f2c94c;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* ===== CONTAINER & SECTIONS ===== */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    
+    /* Expands the main container to push the footer down */
+    flex: 1 0 auto;
+    width: 100%;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #7a1f2b;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+
+ul {
+    margin: 0 0 20px 0;
+    padding-left: 24px;
+}
+
+li {
+    margin-bottom: 6px;
+}
+
+.intro-image {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* ===== QUERY RESULT TABLE ===== */
+h2 {
+    font-size: 1.4rem;
+    color: #7a1f2b;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.result-summary {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.result-summary th,
+.result-summary td {
+    border: 1px solid #e0d6c8;
+    padding: 10px 14px;
+    text-align: left;
+}
+
+.result-summary th {
+    background-color: #7a1f2b;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.result-summary tr:nth-child(even) {
+    background-color: #f5efe6;
+}
+
+.pdf-download {
+    display: inline-block;
+    background-color: #7a1f2b;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-top: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.pdf-download:hover {
+    background-color: #f2c94c;
+    color: #2b2b2b !important;
+}
+
+/* ===== QUERY BLOCKS ===== */
+.query-block {
+    margin: 32px 0;
+}
+
+.query-label {
+    font-style: italic;
+    color: #7a1f2b;
+    font-weight: 600;
+    margin: 20px 0 8px 0;
+}
+
+.query-block pre {
+    background-color: #f5efe6;
+    border: 1px solid #e0d6c8;
+    border-radius: 6px;
+    padding: 16px;
+    margin: 0 0 20px 0;
+    overflow-x: auto;
+    font-size: 0.9rem;
+}
+
+.query-block img {
+    display: block;
+    max-width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin: 0 0 12px 0;
+}
+
+/* ===== TURTLE / RDF CODE BLOCK ===== */
+.turtle-code {
+    background-color: #f5efe6;
+    border: 1px solid #e0d6c8;
+    border-radius: 6px;
+    padding: 16px;
+    margin: 0 0 20px 0;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #2b2b2b;
+    white-space: pre;
+}
+
+/* ===== LLM RESULTS BLOCKS ===== */
+.llm-results {
+    margin: 20px 0 24px 0;
+}
+
+.llm-entry {
+    margin: 0 0 32px 0;
+}
+
+.llm-entry:last-child {
+    margin-bottom: 0;
+}
+
+.llm-entry dt {
+    font-weight: 600;
+    color: #7a1f2b;
+    margin-bottom: 6px;
+}
+
+.llm-entry dd {
+    margin: 0 0 16px 0;
+}
+
+.llm-entry img {
+    display: block;
+    max-width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin: 0 0 12px 0;
+}
+
+.llm-entry img:last-child {
+    margin-bottom: 0;
+}
+
+.query-block img:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== TEAM SECTION ===== */
+.team-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 20px 0;
+    list-style: none;
+    padding: 0;
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: auto;
+}
+
+.team-photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    margin-bottom: 10px;
+}
+
+.team-name {
+    font-weight: 600;
+    color: #7a1f2b;
+    margin-bottom: 4px;
+    font-size: 0.95rem;
+}
+
+.team-member a {
+    font-size: 0.65rem;
+    white-space: nowrap;
+}
+
+/* ===== FOOTER (SAME HEIGHT ON ALL PAGES) ===== */
+footer {
+    background-color: #9e3241; /* Light red */
+    color: #ffffff;
+    text-align: center;
+    width: 100%;
+    flex-shrink: 0;
+    margin-top: auto;
+    
+    /* Fixed uniform height across all pages */
+    height: 180px; 
+    padding: 20px 15px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.footer-content {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.footer-content h3 {
+    margin-bottom: 6px;
+    color: #f2c94c;
+    font-size: 1.1rem;
+    line-height: 1.2;
+}
+
+.footer-content p {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+    color: #fdfaf6;
+    line-height: 1.3;
+}
+
+.footer-content a {
+    color: #f2c94c;
+    text-decoration: none;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-nav {
+        margin-top: 10px;
+        gap: 12px;
+        flex-direction: column;
+    }
+
+    footer {
+        height: auto;
+        padding: 25px 15px;
+    }
+}
