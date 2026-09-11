@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SPARQL Queries – Sanremo Music Festival</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="top-bar">
+    <a href="index.html" class="logo-link">
+        <img src="images/uniboicona.png" alt="Logo" class="logo">
+    </a>
+
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research Question</a>
+        <a href="methodology.html">Methodology</a>
+        <a href="queries.html">SPARQL Queries</a>
+        <a href="LLMprompts.html">LLM Prompts</a>
+        <a href="RDFtriples.html">RDF Triples</a>
+        <a href="sparqlconstruct.html">SPARQL Construct</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="team.html">Team</a>
+    </nav>
+</header>
+
+<!-- CENTERED CONTENT -->
+<div class="container" style="max-width: 1000px;">
+
+    <section>
+        <h1>SPARQL QUERIES</h1>
+
+        <p>
+          To carry out this project, we selected the ArCo knowledge graph as our primary data source, and proceeded to explore its contents through a series of preliminary SPARQL queries. These initial queries aimed to retrieve basic data about the Sanremo Music Festival.<br> With our first research, we discovered that this cultural event is currently not present in this knowledge graph under the names “Festival di Sanremo” or “Festival di San Remo”, considering both the subject and object positions of RDF triples. Having found no corresponding entities, we broadened the scope of the investigation by searching for resources associated with the keyword “festival” while maintaining the same query structure.
+        </p>
+
+        <!-- QUERY 1 -->
+        <div class="query-block" style="margin-bottom: 35px;">
+          <p class="query-label" style="font-weight: bold; margin-top: 20px; margin-bottom: 10px;">QUERY 1</p>
+          <pre><code>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/cultural-heritage/&gt;
+PREFIX cis: &lt;http://dati.beniculturali.it/cis/&gt;
+PREFIX a-ce: &lt;https://w3id.org/arco/ontology/cultural-event/&gt; 
+
+SELECT DISTINCT ?s ?o
+WHERE {
+  { ?s a cis:CulturalEvent }
+  UNION 
+  { ?s a a-ce:RecurrentSituationSeries }
+  UNION
+  { ?s a a-ce:Competition }
+  ?s rdfs:label ?o .
+  
+  OPTIONAL {
+    ?s a arco:HistoricOrArtisticProperty ;
+    a arco:CulturalProperty .
+  }
+  
+  FILTER(
+REGEX(STR(?s), "Festival di Sanremo|Festival di San Remo", "i") || REGEX(STR(?o), "Festival di San Remo", "i")
+  )
+}
+ORDER BY ASC (?o)
+LIMIT 50</code></pre>
+
+          <p class="query-label" style="font-weight: bold; margin-top: 20px; margin-bottom: 10px;">QUERY 1 RESULTS</p>
+          <img src="images/Query1_results.png" alt="Results Query 1" style="max-width: 1000px; width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; margin-top: 10px; margin-bottom: 10px;">
+        </div>
+
+        <p>Having found no corresponding entities, we broadened the scope of the investigation by searching for resources associated with the keyword “<a href="https://en.wikipedia.org/wiki/Festival">festival</a>” while maintaining the same query structure.</p>
+
+        <!-- QUERY 2 -->
+        <div class="query-block" style="margin-bottom: 35px;">
+          <p class="query-label" style="font-weight: bold; margin-top: 20px; margin-bottom: 10px;">QUERY 2</p>
+          <pre><code>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/cultural-heritage/&gt;
+PREFIX cis: &lt;http://dati.beniculturali.it/cis/&gt;
+PREFIX a-ce: &lt;https://w3id.org/arco/ontology/cultural-event/&gt; 
+
+SELECT DISTINCT ?s ?o
+WHERE {
+  { ?s a cis:CulturalEvent }
+  UNION 
+  { ?s a a-ce:RecurrentSituationSeries }
+  UNION
+  { ?s a a-ce:Competition }
+  ?s rdfs:label ?o .
+  
+  OPTIONAL {
+    ?s a arco:HistoricOrArtisticProperty ;
+    a arco:CulturalProperty .
+  }
+  
+  FILTER(
+    REGEX(STR(?s), "Festival", "i") || REGEX(STR(?o), "Festival", "i")
+  )
+}
+ORDER BY ASC (?o)</code></pre>
+
+          <p class="query-label" style="font-weight: bold; margin-top: 20px; margin-bottom: 10px;">QUERY 2 RESULTS</p>
+          <a href="docs/Query2_results.pdf" download class="pdf-download" style="display: inline-block; margin-top: 5px; margin-bottom: 10px;">Download the results for the second query</a>
+        </div>
+
+        <p>
+          With the second query, we found multiple entities within the ArCo database called “Festival”. We went through all of them and found no existing correspondence with the Sanremo Music Festival. We further expanded our search by looking for entities that contained “<a href="https://en.wikipedia.org/wiki/Sanremo">Sanremo</a>” or “San Remo” in their labels. This approach allowed us to investigate whether the festival might be represented indirectly or under a different naming convention within the knowledge graph.
+        </p>
+
+        <!-- QUERY 3 -->
+        <div class="query-block" style="margin-bottom: 35px;">
+          <p class="query-label" style="font-weight: bold; margin-top: 20px; margin-bottom: 10px;">QUERY 3</p>
+          <pre><code>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/cultural-heritage/&gt;
+PREFIX cis: &lt;http://dati.beniculturali.it/cis/&gt;
+PREFIX a-ce: &lt;https://w3id.org/arco/ontology/cultural-event/&gt; 
+
+SELECT DISTINCT ?s ?o
+WHERE {
+  { ?s a cis:CulturalEvent }
+  UNION 
+  { ?s a a-ce:RecurrentSituationSeries }
+  UNION
+  { ?s a a-ce:Competition }
+  ?s rdfs:label ?o .
+  
+  OPTIONAL {
+    ?s a arco:HistoricOrArtisticProperty ;
+    a arco:CulturalProperty .
+  }
+  
+  FILTER(
+    REGEX(STR(?s), "Sanremo|San Remo", "i") || REGEX(STR(?o), "Sanremo|San Remo", "i")
+  )
+}
+ORDER BY ASC (?o)
+LIMIT 50</code></pre>
+
+          <p class="query-label" style="font-weight: bold; margin-top: 20px; margin-bottom: 10px;">QUERY 3 RESULTS</p>
+          <img src="images/Query3_results.png" alt="Query 3 results" style="max-width: 1000px; width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; margin-top: 10px; margin-bottom: 10px;">
+        </div>
+
+        <p>
+          After identifying a string of text “Festival della Canzone Italiana” in a result, we searched for this label in the ontology to determine whether it corresponded to an existing resource on ArCo.
+        </p>
+
+        <!-- QUERY 4 -->
+        <div class="query-block" style="margin-bottom: 35px;">
+          <p class="query-label" style="font-weight: bold; margin-top: 20px; margin-bottom: 10px;">QUERY 4</p>
+          <pre><code>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/cultural-heritage/&gt;
+PREFIX cis: &lt;http://dati.beniculturali.it/cis/&gt;
+PREFIX a-ce: &lt;https://w3id.org/arco/ontology/cultural-event/&gt; 
+
+SELECT DISTINCT ?s ?o
+WHERE {
+  { ?s a cis:CulturalEvent }
+  UNION 
+  { ?s a a-ce:RecurrentSituationSeries }
+  UNION
+  { ?s a a-ce:Competition }
+  ?s rdfs:label ?o .
+  
+  OPTIONAL {
+    ?s a arco:HistoricOrArtisticProperty ;
+    a arco:CulturalProperty .
+  }
+    FILTER(
+    REGEX(STR(?s), "Festival della Canzone Italiana", "i") || REGEX(STR(?o), "Festival della Canzone Italiana", "i")
+  )
+}
+ORDER BY ASC (?o)
+LIMIT 50</code></pre>
+
+          <p class="query-label" style="font-weight: bold; margin-top: 20px; margin-bottom: 10px;">QUERY 4 RESULTS</p>
+          <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 10px; margin-bottom: 10px;">
+              <img src="images/Query4_results.png" alt="Risultati Query 4" style="max-width: 1000px; width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;">
+              <img src="images/Mostra_Sanremo70.png" alt="Screenshot Mostra_Sanremo70" style="max-width: 1000px; width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;">
+              <img src="images/Mostra_Sanremo70_2.png" alt="Screenshot Mostra_Sanremo70_2" style="max-width: 1000px; width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;">
+          </div>
+        </div>
+
+        <p>
+         We subsequently performed an additional search looking for entities called “<a href="https://en.wikipedia.org/wiki/Teatro_Ariston">Teatro Ariston</a>” in both subject and object positions.
+        </p>
+
+        <!-- QUERY 5 -->
+        <div class="query-block" style="margin-bottom: 35px;">
+          <p class="query-label" style="font-weight: bold; margin-top: 20px; margin-bottom: 10px;">QUERY 5</p>
+          <pre><code>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/cultural-heritage/&gt;
+PREFIX cis: &lt;http://dati.beniculturali.it/cis/&gt;
+
+SELECT DISTINCT ?s ?o
+WHERE {
+  { ?s a cis:CulturalEntity }
+  UNION 
+  { ?s a cis:Entity }
+  ?s rdfs:label ?o .
+  
+  OPTIONAL {
+    ?s a arco:HistoricOrArtisticProperty ;
+    a arco:CulturalProperty .
+  }
+  
+  FILTER(
+    REGEX(STR(?s), "teatro Ariston", "i") || REGEX(STR(?o), "teatro Ariston", "i") 
+   )
+}
+ORDER BY ASC (?o)
+LIMIT 50</code></pre>
+
+          <p class="query-label" style="font-weight: bold; margin-top: 20px; margin-bottom: 10px;">QUERY 5 RESULTS</p>
+          <img src="images/Query5_results.png" alt="Risultati Query 5" style="max-width: 1000px; width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; margin-top: 10px; margin-bottom: 10px;">
+        </div>
+
+        <p>As we obtained no correspondence, we concluded that the ArCo knowledge graph does not include an entity concerning the Sanremo Music Festival or the Teatro Ariston. Based on these findings, we decided to create and integrate relevant information into the knowledge graph from the beginning.</p>
+
+        <h3 style="margin-top: 40px; margin-bottom: 20px;">Explanation of the keywords we used</h3>
+
+        <ul>
+          <li>
+            <strong>OPTIONAL</strong> &mdash; In SPARQL, OPTIONAL is used when a
+            pattern is not required for a solution to be returned. If a matching
+            value is found, it will be included in the result. If not, the
+            variable remains unbound without invalidating the rest of the query
+            and the solution will not be discarded.
+          </li>
+          <li>
+            <strong>DISTINCT</strong> &mdash; We used it to remove potential
+            duplicates from the results.
+          </li>
+          <li>
+            <strong>UNION</strong> &mdash; With this keyword we combined multiple
+            naming patterns and results from different triple patterns or
+            queries. With UNION we can have a compilation of results from either
+            one or another pattern.
+          </li>
+          <li>
+            <strong>FILTER and REGEX</strong> &mdash; The FILTER keyword is employed to restrict solutions over the group where FILTER appears, while REGEX makes entities easier to retrieve by establishing that if the value contains a specific name string, then the software will show results even if the name string appears inside a bigger string. We explicitly search for strings by combining REGEX with STR. “i” = It is employed to make the string case insensitive.
+          </li>
+          <li>
+            <strong>ORDER BY</strong> &mdash; We used it to order the results of the query with the ASC modifier so that the results of the object would be ordered with an ascending alphabetical order.
+          </li>
+          <li>
+            <strong>LIMIT</strong> &mdash; This keyword sets a limit on the number of elements to visualise in the results. We always set the LIMIT on 50 except for the second query, where we did not specify any limit in order to query all possible results.
+          </li>
+        </ul>
+    </section>
+
+</div> <!-- CLOSING CONTAINER -->
+
+<!-- FULL-WIDTH FOOTER -->
+<footer>
+    <div class="footer-content">
+        <h3>Sanremo Music Festival</h3>
+        <p>Project for Knowledge Engineering and Computation for the Humanities Course.</p>
+        <p><strong>Contacts:</strong> <a href="mailto:michelle.vallet@studio.unibo.it">michelle.vallet@studio.unibo.it</a> | <a href="mailto:saramaryam.flamigni@studio.unibo.it">saramaryam.flamigni@studio.unibo.it</a> | <a href="mailto:marta.megna@studio.unibo.it">marta.megna@studio.unibo.it</a> | <a href="mailto:giuseppe.campese@studio.unibo.it">giuseppe.campese@studio.unibo.it</a> | <a href="mailto:alice.celio@studio.unibo.it">alice.celio@studio.unibo.it</a> | </p>
+        <p>&copy; 2026 KE4H Project - University of Bologna</p>
+    </div>
+</footer>
+
+<script>
+    const sideMenu = document.getElementById("sideMenu");
+    const openBtn = document.getElementById("openMenuBtn");
+    const closeBtn = document.getElementById("closeMenuBtn");
+
+    if (openBtn && sideMenu) {
+        openBtn.addEventListener("click", (e) => {
+            sideMenu.style.left = "0";
+            e.stopPropagation();
+        });
+    }
+
+    if (closeBtn && sideMenu) {
+        closeBtn.addEventListener("click", () => {
+            sideMenu.style.left = "-250px";
+        });
+    }
+
+    if (sideMenu) {
+        document.addEventListener("click", (e) => {
+            if (!sideMenu.contains(e.target) && sideMenu.style.left === "0px") {
+                sideMenu.style.left = "-250px";
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

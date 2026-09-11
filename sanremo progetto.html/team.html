@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>Team – Sanremo Music Festival</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="top-bar">
+    <a href="index.html" class="logo-link">
+        <img src="images/uniboicona.png" alt="Logo" class="logo">
+    </a>
+
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research Question</a>
+        <a href="methodology.html">Methodology</a>
+        <a href="queries.html">SPARQL Queries</a>
+        <a href="LLMprompts.html">LLMprompts</a>
+        <a href="RDFtriples.html">RDF Triples</a>
+        <a href="sparqlconstruct.html">Sparql Construct</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="team.html">Team</a>
+    </nav>
+</header>
+
+
+<div class="container">
+
+<section>
+   <section>
+    <h1>TEAM</h1>
+
+    <h2>Group Presentation</h2>
+
+    <p>Our group is made up of:</p>
+
+    <div class="team-grid">
+      <div class="team-member">
+        <img src="images/Michelle Vallet.png" alt="foto michelle" class="team-photo">
+        <p class="team-name">Michelle Vallet</p>
+
+        <a href="mailto:michelle.vallet@studio.unibo.it">michelle.vallet@studio.unibo.it</a>
+      </div>
+
+      <div class="team-member">
+        <img src="images/Sara Maryam Flamigni.png" alt="foto sara" class="team-photo">
+        <p class="team-name">Sara Maryam Flamigni</p>
+        <a href="mailto:saramaryam.flamigni@studio.unibo.it">saramaryam.flamigni@studio.unibo.it</a>
+      </div>
+
+      <div class="team-member">
+        <img src="images/Marta Megna.png" alt="foto marta" class="team-photo">
+        <p class="team-name">Marta Megna</p>
+
+        <a href="mailto:marta.megna@studio.unibo.it">marta.megna@studio.unibo.it</a>
+      </div>
+
+      <div class="team-member">
+        <img src="images/Giuseppe Campese.png" alt="foto Beppe" class="team-photo">
+        <p class="team-name">Giuseppe Campese</p>
+
+        <a href="mailto:giuseppe.campese@studio.unibo.it">giuseppe.campese@studio.unibo.it</a>
+      </div>
+
+      <div class="team-member">
+        <img src="images/Alice Celio.png" alt="foto Alice" class="team-photo">
+        <p class="team-name">Alice Celio</p>
+        
+        <a href="mailto:alice.celio@studio.unibo.it">alice.celio@studio.unibo.it</a>
+      </div>
+    </div>
+
+
+    <p>We are students in the Master's degree program in <em>Language, Society &amp; Communication</em>, an interdisciplinary program focused on linguistic, communicative, and socio-cultural studies.</p>
+
+    <p>We collaborate on this Computer Science project by combining different skills and perspectives. Our workflow is based on continuous exchange of ideas, coordination, and shared responsibility, aiming to produce a coherent and well-structured final output.</p>
+
+    <p>This experience allows us to apply theoretical knowledge in a practical setting while improving our abilities in teamwork, organization, and digital tools.</p>
+
+</section>
+
+</div>
+
+<footer>
+    <div class="footer-content">
+        <h3>Festival di Sanremo</h3>
+        <p>Project for Knowledge Engineering and Computation for the Humanities Course.</p>
+         <p>&copy; 2026 KE4H Project - University of Bologna</p>
+    </div>
+</footer>
+
+
+<script>
+    const sideMenu = document.getElementById("sideMenu");
+    const openBtn = document.getElementById("openMenuBtn");
+    const closeBtn = document.getElementById("closeMenuBtn");
+
+
+    openBtn.addEventListener("click", (e) => {
+        sideMenu.style.left = "0";
+        e.stopPropagation();
+    });
+
+
+    closeBtn.addEventListener("click", () => {
+        sideMenu.style.left = "-250px";
+    });
+
+
+    document.addEventListener("click", (e) => {
+        if (!sideMenu.contains(e.target) && sideMenu.style.left === "0px") {
+            sideMenu.style.left = "-250px";
+        }
+    });
+</script>
+
+
+</body>
+</html>
